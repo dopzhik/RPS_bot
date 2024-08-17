@@ -54,7 +54,8 @@ async def process_stat_show(message: Message):
                          f'<b>Твоя статистика, {users[message.from_user.id]['name']}:</b>\n\n'
                          f'Всего сыграно: {users[message.from_user.id]['total_games']}\n\n'
                          f'Количество побед: {users[message.from_user.id]['wins']}\n\n'
-                         f'Победила дружба: {users[message.from_user.id]['draw']}')
+                         f'Победила дружба: {users[message.from_user.id]['draw']}\n\n'
+                         f'Чтобы еще раз сыграть разверни клавиатуру снизу ⬇️')
 
 
 @router.message(F.text.in_([lexicon_ru['rock'],
