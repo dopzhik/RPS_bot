@@ -26,5 +26,6 @@ lexicon_ru: dict[str, str] = {
 
 lexicon_commands_ru: dict[str, str] = {
     '/start': 'начало',
-    '/help': 'помощь'
+    '/help': 'помощь',
+    '/admin': 'общая статистика'
 }

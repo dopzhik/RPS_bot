@@ -5,6 +5,10 @@ from keyboards.keyboards import game_kb, yes_no_kb
 from lexicon.lexicon_ru import lexicon_ru
 from services.services import get_bot_choice, get_winner
 from user_bd.user_dict import users
+from config_data.config import load_config
+
+admins = load_config().tg_bot.admins_id
+
 router = Router()
 
 
@@ -23,6 +27,14 @@ async def process_start_command(message: Message):
 @router.message(Command(commands='help'))
 async def process_help_command(message: Message):
     await message.answer(text=lexicon_ru['/help'], reply_markup=yes_no_kb)
+
+@router.message(Command(commands='admin'))
+async def process_help_command(message: Message):
+    all_users = (f'игрок: {value['name']} сыграл {value['total_games']} игр' for key, value in users.items())
+    if message.from_user.id in admins:
+        await message.answer(text='\n'.join(all_users))
+    else:
+        await message.answer('Вы не админ')
 
 
 @router.message(F.text == lexicon_ru['yes_button'])
